@@ -2,15 +2,16 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
  * Write a description of class Creature here.
- * 
+ * CS20S
  * @author (your name) 
- * @version (a version number or a date)
+ * @version (oct/24/17)
  */
 public class Creature extends Actor
 {
     private HealthBar creatureBar; 
     private int playerOwnership;
     private int healthNumber;
+    private String type;
     /**
      * Default constructor for objects of the Creature class
      * 
@@ -31,15 +32,16 @@ public class Creature extends Actor
      * @param whichPlayer discusses whether the creature belongs to player 1 or player 2
      * @return an object of the Creature class
      */
-    public Creature( int health, int whichPlayer )
+    public Creature( int health, int whichPlayer, String creatureType )
     {
          healthNumber = health;
          playerOwnership = whichPlayer;
-      creatureBar= new HealthBar( healthNumber,healthNumber , 10 );
+         creatureBar= new HealthBar( healthNumber,healthNumber , 10 );
+         type = creatureType;
     }
     protected HealthBar getHealthBar( )
     {
-        return creatureBar;
+         return creatureBar;
     }
     public int getPlayerOwnership ( )
     {
@@ -52,11 +54,11 @@ public class Creature extends Actor
      * @param There are no parameters
      * @return Nothing is returned
      */
-    public void attack()
+    public void attack(int idx)
     {
         //empty method that will get overriden in subclasses
     }
-
+    
     /**
      * act will complete actions that the Creature object should
      * accomplish while the scenario is running
@@ -66,7 +68,12 @@ public class Creature extends Actor
      */
     public void act() 
     {
-        //empty method that will get overriden in subclasses
+        //empty method that will get overriden in subclasses`h
     }   
-
+    public String getType()
+    {
+        return type;
+    }
+    
+    
 }

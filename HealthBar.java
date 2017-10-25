@@ -4,8 +4,8 @@ import java.awt.*;
 /**
  * Write a description of class HealthBar here.
  * 
- * @author (your name) 
- * @version (a version number or a date)
+ * @author (ChukwudaluOnwuekwe) 
+ * @version (10/17/24)
  */
 public class HealthBar extends Actor
 {

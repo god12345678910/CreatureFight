@@ -2,15 +2,15 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
  * Write a description of class Charmander here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
+ * CS20S
+ * Dalu Onwuekwe 
+ *OCT.2.17
  */
 public class Charmander extends Creature
 {   
     public Charmander( World w )
     {
-        super(700,1);
+        super(700,1, "Fire");
         getImage(). scale (150,100);
         w.addObject( getHealthBar(),300,w. getHeight() - 50);
     }
@@ -30,5 +30,22 @@ public class Charmander extends Creature
         }
         
 
-    }    
+    } 
+    public void attack(int idx)
+    {
+        CreatureWorld world=(CreatureWorld)getWorld();
+        Creature enemy = world.getPlayerTwo();
+        String enemyType =enemy.getType();
+        
+        if( idx == 0)
+        {
+            enemy.getHealthBar().add(-25);
+        }
+        else if( idx == 1)
+        {
+            enemy.getHealthBar().add(-75);
+        }
+        
+        world.setTurnNumber(2);
+    }
 }

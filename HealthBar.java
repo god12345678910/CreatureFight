@@ -93,11 +93,11 @@ public class HealthBar extends Actor
         //Need to add code
         if( current > target )
         {
-            current -= speed;
-            if ( current <+ target )
-            {
+           current -= speed;
+           if ( current <+ target )
+           {
                 current = target;
-            }
+           }
            
         }
         else 
@@ -170,14 +170,14 @@ public class HealthBar extends Actor
         //Need to add code
         target += change;
          if ( target > max )
-         {
+        {
              target = max ; 
-         }
+        }
          
          if ( target < 0 )
-         {
+        {
              target = 0;
-         }
+        }
     }
 
     /**

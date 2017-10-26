@@ -45,7 +45,7 @@ public class Creature extends Actor
     }
     public int getPlayerOwnership ( )
     {
-        return playerOwnership;
+         return playerOwnership;
        
     }
     /**
@@ -56,7 +56,7 @@ public class Creature extends Actor
      */
     public void attack(int idx)
     {
-        //empty method that will get overriden in subclasses
+         //empty method that will get overriden in subclasses
     }
     
     /**
@@ -68,7 +68,7 @@ public class Creature extends Actor
      */
     public void act() 
     {
-        //empty method that will get overriden in subclasses`h
+         //empty method that will get overriden in subclasses`h
     }   
     public String getType()
     {

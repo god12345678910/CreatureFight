@@ -4,10 +4,14 @@ import javax.swing.JOptionPane;
 import java.util.List;
 
 /**
- * Write a description of class MyWorld here.
- * CS20S
- * Dalu Onwuekwe 
- *OCT.25.17  */
+ * Name: ChukwuDalu
+ * Course: CS20S
+ * Teacher: Mr. Hardman
+ * Lab #2, Program #1
+ * Date Last Modified: oct/26/17
+ *
+ */
+
 public class CreatureWorld extends World
 {
     private Creature playerOneCreature;
@@ -36,6 +40,8 @@ public class CreatureWorld extends World
         turnNumber = 0;
          
         prepareCreatures();
+        
+        Greenfoot.start();
     }
     
     private void prepareCreatures()
@@ -73,51 +79,52 @@ public class CreatureWorld extends World
      */
     public void act()
     {
+        
         List allObjects = getObjects(null);
         
-       if( turnNumber == 0 )
-       {
-          playerOneName = JOptionPane.showInputDialog(" Player One, please enter your name:", null);
-          playerTwoName = JOptionPane.showInputDialog(" Player Two, please enter your name:", null);
-          oneFightMenu = new  Menu( " Fight ", " Scratch \n Flamethrower ", 24, Color.BLACK, Color.WHITE, Color.BLACK, Color.WHITE, new FightCommands() );
-          oneSwitchMenu = new Menu( " Switch ", " Golem \n Ivysaur ", 24, Color.BLACK, Color.WHITE, Color.BLACK, Color.WHITE, new SwitchCommands() );
-          addObject( oneFightMenu, 173, getHeight() - 100);
-          addObject( oneSwitchMenu, 241, getHeight() - 100);
-          twoFightMenu = new Menu( "Fight","Tackle\n Thunderbolt",24, Color.BLACK, Color.WHITE, Color.BLACK, Color.WHITE, new FightCommands() );
-          twoSwitchMenu = new Menu( "switch","lapras\n pidgeot",24,Color.BLACK, Color.WHITE, Color.BLACK, Color.WHITE, new SwitchCommands() );
+        if( turnNumber == 0 )
+        {
+            playerOneName = JOptionPane.showInputDialog(" Player One, please enter your name:", null);
+            playerTwoName = JOptionPane.showInputDialog(" Player Two, please enter your name:", null);
+            oneFightMenu = new  Menu( " Fight ", " Scratch \n Flamethrower ", 24, Color.BLACK, Color.WHITE, Color.BLACK, Color.WHITE, new FightCommands() );
+            oneSwitchMenu = new Menu( " Switch ", " Golem \n Ivysaur ", 24, Color.BLACK, Color.WHITE, Color.BLACK, Color.WHITE, new SwitchCommands() );
+            addObject( oneFightMenu, 173, getHeight() - 100);
+            addObject( oneSwitchMenu, 241, getHeight() - 100);
+            twoFightMenu = new Menu( "Fight","Tackle\n Thunderbolt",24, Color.BLACK, Color.WHITE, Color.BLACK, Color.WHITE, new FightCommands() );
+            twoSwitchMenu = new Menu( "switch","lapras\n pidgeot",24,Color.BLACK, Color.WHITE, Color.BLACK, Color.WHITE, new SwitchCommands() );
 
-          addObject( twoSwitchMenu, 199, 75 );
-          addObject( twoFightMenu, 131, 75 );
+            addObject( twoSwitchMenu, 199, 75 );
+            addObject( twoFightMenu, 131, 75 );
           
-          turnNumber = 1;
+            turnNumber = 1;
           
-       }
-       else if( turnNumber == 1)
-       {
-          showText( playerOneName + ", your turn", getWidth()/2, getHeight()/2 );
-          showText("", getWidth()/2 , getHeight()/2+26);
+        }
+        else if( turnNumber == 1)
+        {
+            showText( playerOneName + ", your turn", getWidth()/2, getHeight()/2 );
+            showText("", getWidth()/2 , getHeight()/2+26);
           
-       }
-       else
-       {
-          showText( playerTwoName + ", your turn", getWidth()/2, getHeight()/2 );
-          showText("", getWidth()/2 , getHeight()/2+26);
-       }
+        }
+        else
+        {    
+            showText( playerTwoName + ", your turn", getWidth()/2, getHeight()/2 );
+            showText("", getWidth()/2 , getHeight()/2+26);
+        }
         
-       if( playerTwoCreature.getHealthBar().getCurrent() <=0)
-       {
-          removeObjects(allObjects);
-          showText( " Player Two Wins! " , getWidth() / 2, getHeight() / 2);
-          showText( "" , getWidth() /2, getHeight()/2 + 26);
-          Greenfoot.stop();
-       }
+        if( playerOneCreature.getHealthBar().getCurrent() <=0)
+        {
+            removeObjects(allObjects);
+            showText( " Player Two Wins! " , getWidth() / 2, getHeight() / 2);
+            showText( "" , getWidth() /2, getHeight()/2 + 26);
+            Greenfoot.stop();
+        }
        
-       if( playerTwoCreature.getHealthBar().getCurrent() <=0)
-       {
-          removeObjects(allObjects);
-          showText( " Player One Wins! " , getWidth() / 2, getHeight() / 2);
-          showText( "" , getWidth() /2, getHeight()/2 + 26);
-          Greenfoot.stop();
-       }
+        if( playerTwoCreature.getHealthBar().getCurrent() <=0)
+        {
+            removeObjects(allObjects);
+            showText( " Player One Wins! " , getWidth() / 2, getHeight() / 2);
+            showText( "" , getWidth() /2, getHeight()/2 + 26);
+            Greenfoot.stop();
+        }
     }
 }

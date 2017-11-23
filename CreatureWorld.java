@@ -4,11 +4,11 @@ import javax.swing.JOptionPane;
 import java.util.List;
 
 /**
- * Name: ChukwuDalu
+ * Name: ChukwuDalu Onwuekwe
  * Course: CS20S
  * Teacher: Mr. Hardman
  * Lab #2, Program #1
- * Date Last Modified: oct/26/17
+ * Date Last Modified: Nob/2/17
  *
  */
 
@@ -16,13 +16,17 @@ public class CreatureWorld extends World
 {
     private Creature playerOneCreature;
     private Creature playerTwoCreature;
-    private int turnNumber;
+    private boolean playerOneTurn;
     private String playerOneName;
     private String playerTwoName;
     private Menu oneFightMenu;
     private Menu oneSwitchMenu;
     private Menu twoFightMenu;
     private Menu twoSwitchMenu;
+    private boolean start;
+    private boolean playerOneMenusAdded;
+    private boolean playerTwoMenusAdded;
+    
     /**
      * Default constructor for objects of class MyWorld.
      * 
@@ -37,8 +41,8 @@ public class CreatureWorld extends World
         
         playerTwoCreature = new Pikachu(this);
         
-        turnNumber = 0;
-         
+        start = true;
+
         prepareCreatures();
         
         Greenfoot.start();
@@ -62,14 +66,16 @@ public class CreatureWorld extends World
         return playerTwoCreature;
     }
     
-    public int getTurnNumber ()
+    public boolean isPlayerOneTurn()
     {
-       return turnNumber; 
+       return playerOneTurn; 
     }
-    public void setTurnNumber( int turn )
+    
+    public void setTurnNumber(boolean turn)
     {
-        turnNumber = turn;
+        playerOneTurn = turn;
     }
+    
     /**
      * act will complete actions that the CreatureWorld object should
      * accomplish while the scenario is running
@@ -79,13 +85,12 @@ public class CreatureWorld extends World
      */
     public void act()
     {
-        
         List allObjects = getObjects(null);
-        
-        if( turnNumber == 0 )
+
+        if( start == true )
         {
-            playerOneName = JOptionPane.showInputDialog(" Player One, please enter your name:", null);
-            playerTwoName = JOptionPane.showInputDialog(" Player Two, please enter your name:", null);
+            playerOneName = JOptionPane.showInputDialog(" Player One, please enter your name:", null);          
+            playerTwoName = JOptionPane.showInputDialog(" Player Two, please enter your name:", null);           
             oneFightMenu = new  Menu( " Fight ", " Scratch \n Flamethrower ", 24, Color.BLACK, Color.WHITE, Color.BLACK, Color.WHITE, new FightCommands() );
             oneSwitchMenu = new Menu( " Switch ", " Golem \n Ivysaur ", 24, Color.BLACK, Color.WHITE, Color.BLACK, Color.WHITE, new SwitchCommands() );
             addObject( oneFightMenu, 173, getHeight() - 100);
@@ -96,20 +101,21 @@ public class CreatureWorld extends World
             addObject( twoSwitchMenu, 199, 75 );
             addObject( twoFightMenu, 131, 75 );
           
-            turnNumber = 1;
           
+            start = false;
+	        playerOneTurn = true;
         }
-        else if( turnNumber == 1)
+        else if(playerOneTurn == true )
         {
-            showText( playerOneName + ", your turn", getWidth()/2, getHeight()/2 );
-            showText("", getWidth()/2 , getHeight()/2+26);
-          
+            showText(playerOneName + "it's your Turn", getWidth() / 2, getHeight() / 2 );
+            showText( "" , getWidth() /2, getHeight()/2 + 26);
         }
         else
-        {    
-            showText( playerTwoName + ", your turn", getWidth()/2, getHeight()/2 );
-            showText("", getWidth()/2 , getHeight()/2+26);
+        {
+            showText(playerTwoName + "it's your Turn" , getWidth() / 2, getHeight() / 2);
+            showText( "" , getWidth() /2, getHeight()/2 + 26);
         }
+        
         
         if( playerOneCreature.getHealthBar().getCurrent() <=0)
         {
@@ -118,7 +124,7 @@ public class CreatureWorld extends World
             showText( "" , getWidth() /2, getHeight()/2 + 26);
             Greenfoot.stop();
         }
-       
+        
         if( playerTwoCreature.getHealthBar().getCurrent() <=0)
         {
             removeObjects(allObjects);

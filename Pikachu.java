@@ -1,6 +1,5 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
-
 /**
  * Write a description of class MyWorld here.
  * CS20S
@@ -10,7 +9,7 @@ public class Pikachu extends Creature
 {
     public Pikachu( World w)
    {
-        super(700,1, "Electric");
+        super(700, false , "Electric");
         getImage(). scale (150,100);
         w.addObject( getHealthBar(),143, 31);
    }
@@ -28,18 +27,18 @@ public class Pikachu extends Creature
         }
     }
    public void attack(int idx)
-   {
+    {
        CreatureWorld world=(CreatureWorld)getWorld();
-        Creature enemy = world.getPlayerOne();
+       Creature enemy = world.getPlayerOne();
        String enemyType =enemy.getType();
         if( idx == 0)
-     {
+        {
           enemy.getHealthBar().add(-30);
-     }
-     else
-     {
+       }
+       else
+       {
           enemy.getHealthBar().add(-65);
+       }
+       world.setTurnNumber(true);
      }
-     world.setTurnNumber(1);
-    }
 }

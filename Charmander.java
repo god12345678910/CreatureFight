@@ -10,7 +10,7 @@ public class Charmander extends Creature
 {   
     public Charmander( World w )
     {
-        super(700,1, "Fire");
+        super(700, true , "Fire");
         getImage(). scale (150,100);
         w.addObject( getHealthBar(),300,w. getHeight() - 50);
     }
@@ -31,11 +31,12 @@ public class Charmander extends Creature
         
 
     } 
+    
     public void attack(int idx)
     {
         CreatureWorld world=(CreatureWorld)getWorld();
         Creature enemy = world.getPlayerTwo();
-        String enemyType =enemy.getType();
+        String enemyType = enemy.getType();
         
         if( idx == 0)
         {
@@ -45,7 +46,6 @@ public class Charmander extends Creature
         {
             enemy.getHealthBar().add(-75);
         }
-        
-        world.setTurnNumber(2);
+       world.setTurnNumber(false);
     }
 }
